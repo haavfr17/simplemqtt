@@ -11,6 +11,9 @@ def on_message(client, userdata, message):
         client.publish(str(message.topic),"pong")
         print("ponged")
 
+print("Input qos wanted")
+qos = int(input())
+print("using qos")
 
 broker_address="localhost"
 
@@ -25,7 +28,7 @@ client.connect(broker_address) #connect to broker
 
 
 client.loop_start() #start the loop
-client.subscribe("house/ping/pong", 2)
+client.subscribe("house/ping/pong", qos)
 print("subed to house/ping/pong")
 
 while True:

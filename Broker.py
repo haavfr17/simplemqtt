@@ -9,11 +9,13 @@ def on_message(client, userdata, message):
     print("message retain flag=",message.retain)
 
 
-def get
 
 
 broker_address="localhost"
 
+print("Input qos wanted")
+qos = int(input())
+print("using qos")
 
 
 
@@ -26,10 +28,10 @@ print("connecting to broker")
 
 client.connect(broker_address) #connect to broker
 client.loop_start() #start the loop
-client.subscribe("house/ping/pong", 2)
+client.subscribe("house/ping/pong", qos)
 
 
-client.publish("house/ping/pong","ping", 2)
+client.publish("house/ping/pong","ping", qos)
 time.sleep(4) # wait
 client.loop_stop() #stop the loop
 
