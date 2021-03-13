@@ -31,8 +31,17 @@ client.loop_start() #start the loop
 client.subscribe("house/ping/pong", qos)
 
 
-client.publish("house/ping/pong","ping", qos)
-time.sleep(4) # wait
+while True:
+    print("Input what you want to publish or input exit to close \n")
+    user_message = str(input())
+    print("wait 1 second before entering new message")
+    time.sleep(1)
+    if user_message == "exit":
+        print("Closing down")
+        break
+    client.publish("house/ping/pong", user_message)
+
+
 client.loop_stop() #stop the loop
 
 
